@@ -15,6 +15,7 @@
         <a href="login.php" class="btn btn-primary">se connecter</a>
         <a href="register.php" class="btn btn-warning">s'inscrire</a>
         <a href="register.php" class="btn btn-warning">contact</a>
+        <a href="services.php" class="btn btn-warning">services</a>
     </nav>
    </header> 
    <main>
