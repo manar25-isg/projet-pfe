@@ -3,6 +3,12 @@
 <?php include_once('../../navbar.php'); ?>
 <!-- /navbar de site -->
 <!-- division de la page -->
+<?php
+$id = $_GET['id'];
+$con = mysqli_connect('localhost', 'root', '', 'db_events');
+$delete = "SELECT * FROM utilisateurs WHERE id = $id";
+$utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete)); 
+?>
 <div class="container">
     <div class="row mt-4">
         <div class="col-4">
@@ -22,17 +28,18 @@
                     <div class="row">
                         <div class="col">
                             <div class="card">
-                                <div class="card-header  text-center bg-info text-white">Ajouter un utilisateur</div>
+                                <div class="card-header  text-center bg-info text-white">Modifier une utilisateur</div>
                                 <div class="card-body">
                                     <?php
-                                    function saveUser($first_name, $last_name,$email, $user_name,$password, $phone,$adresse, $avatar)
+                                    function editutilisateur($first_name, $last_name,$email, $user_name,$password, $phone,$adresse, $avatar)
                                     {
                                         //var_dump("formulaire recu au serveur");
                                         // se connecter à la base
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
                                         // requete  SQL
-                                        $insert = "INSERT INTO `utilisateurs`(  `first_name`, `last_name`, `email`, `user_name`, `password`, `phone`, `adresse`, `avatar`) VALUES (\"" . $first_name . "\",\"" . $last_name . "\",\"" . $email . "\",\"" . $user_name . "\",\"" . $password . "\",\"" . $phone . "\",\"" . $adresse . "\",\"" . $avatar . "\")";
-                                        $result = mysqli_query($con, $insert);
+                                        $insert = "UPDATE `utilisateurs` SET `first_name`=\"".$first_name."\",`last_name`=\"".$last_name."\",`email`=\"".$email."\",`user_name`=\"".$user_name."\",`password`=\"".$password."\",`phone`=\"".$phone."\",`adresse`=\"".$adresse."\",`avatar`=\"".$avatar."\" WHERE  ";
+                                        
+                                        $result = mysqli_query($con, "SELECT * FROM utilisateurs");
                                     }
                                     // soumission de formulaire par la methode POST
                                     $errors = [];
@@ -46,8 +53,8 @@
                                         $phone = $_POST['phone'];
                                         $adresse = $_POST['adresse'];
                                         $avatar = $_POST['avatar'];
-                                        
-                                        
+                                        // validation des données
+                                        // contraintes
                                         if (empty($first_name)) {
                                             $errors[] = "first_name is required";
                                         }
@@ -72,56 +79,44 @@
                                         if (empty($avatar)) {
                                             $errors[] = "avatar is required";
                                         }
-                                       
                                         if (count($errors) <= 0) {
-                                            saveService($first_name , $last_name, $email, $$user_name, $password, $phone, $adresse, $avatar);
+                                            editutilisateur($first_name, $last_name,$email, $user_name,$password, $phone,$adresse, $avatar);
                                         }
                                     }
-                                    ?>
-                                    <?php
-                                        if(count($errors) > 0){
-                                           foreach($errors as $error){
-
-                                            ?>
-                                            <div class="alert alert-danger"><?= $error ?></div>
-                                            <?php
-                                           }
-                                        }
                                     ?>
                                     <form action="" method="post">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">first_name</label>
-                                            <input type="text" class="form-control" name="first_name" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="first_name" value="<?= $utilisateurs['first_name'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">last_name</label>
-                                            <input type="text" class="form-control" name="last_name" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="last_name" value="<?= $utilisateurs['last_name'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">email</label>
-                                            <input type="text" class="form-control" name="email" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="email" value="<?= $utilisateurs['email'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">user_name</label>
-                                            <input type="text" class="form-control" name="user_name" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="user_name" value="<?= $utilisateurs['user_name'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">password</label>
-                                            <input type="text" class="form-control" name="password" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="password" value="<?= $utilisateurs['password'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">phone</label>
-                                            <input type="text" class="form-control" name="phone" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="phone" value="<?= $utilisateurs['phone'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">adresse</label>
-                                            <input type="text" class="form-control" name="adresse" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="adresse" value="<?= $utilisateurs['adresse'] ?>" id="exampleInputEmail1">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">avatar</label>
-                                            <input type="text" class="form-control" name="avatar" id="exampleInputEmail1">
+                                            <input type="text" class="form-control" name="avatar" value="<?= $utilisateurs['avatar'] ?>" id="exampleInputEmail1">
                                         </div>
-                                        
                                         <button type="submit" name="valid" class="btn btn-primary">Valider</button>
                                     </form>
                                 </div>
