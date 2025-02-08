@@ -1,6 +1,6 @@
-<?php include_once('../shared/header.php'); ?>
+<?php include_once('../../header.php'); ?>
 <!-- navbar de site -->
-<?php include_once('../shared/navbar.php'); ?>
+<?php include_once('../../navbar.php'); ?>
 <!-- /navbar de site -->
 <!-- division de la page -->
 <?php
@@ -31,13 +31,13 @@ $utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete));
                                 <div class="card-header  text-center bg-info text-white">Modifier une utilisateur</div>
                                 <div class="card-body">
                                     <?php
-                                    function editutilisateur($first_name, $last_name,$email, $password, $phone,$adresse, $avatar)
+                                    function editutilisateur($first_name, $last_name,$email, $user_name,$password, $phone,$adresse, $avatar)
                                     {
                                         //var_dump("formulaire recu au serveur");
                                         // se connecter à la base
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
                                         // requete  SQL
-                                        $insert = "UPDATE `utilisateurs` SET `first_name`=\"".$first_name."\",`last_name`=\"".$last_name."\",`email`=\"".$email."\",`password`=\"".$password."\",`phone`=\"".$phone."\",`adresse`=\"".$adresse."\",`avatar`=\"".$avatar."\" WHERE  ";
+                                        $insert = "UPDATE `utilisateurs` SET `first_name`=\"".$first_name."\",`last_name`=\"".$last_name."\",`email`=\"".$email."\",`user_name`=\"".$user_name."\",`password`=\"".$password."\",`phone`=\"".$phone."\",`adresse`=\"".$adresse."\",`avatar`=\"".$avatar."\" WHERE  ";
                                         
                                         $result = mysqli_query($con, "SELECT * FROM utilisateurs");
                                     }
@@ -48,7 +48,7 @@ $utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete));
                                         $first_name = $_POST['first_name'];
                                         $last_name = $_POST['last_name'];
                                         $email = $_POST['email'];
-                                        
+                                        $user_name = $_POST['user_name'];
                                         $password = $_POST['password'];
                                         $phone = $_POST['phone'];
                                         $adresse = $_POST['adresse'];
@@ -64,8 +64,9 @@ $utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete));
                                         if (empty($email)) {
                                             $errors[] = "email is required";
                                         }
-                                      
-                                   
+                                        if (empty($user_name)) {
+                                            $errors[] = "user_name is required";
+                                        }
                                         if (empty($password)) {
                                             $errors[] = "password is required";
                                         }
@@ -79,7 +80,7 @@ $utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete));
                                             $errors[] = "avatar is required";
                                         }
                                         if (count($errors) <= 0) {
-                                            editutilisateur($first_name, $last_name,$email,$password, $phone,$adresse, $avatar);
+                                            editutilisateur($first_name, $last_name,$email, $user_name,$password, $phone,$adresse, $avatar);
                                         }
                                     }
                                     ?>
@@ -96,7 +97,10 @@ $utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete));
                                             <label for="exampleInputEmail1" class="form-label">email</label>
                                             <input type="text" class="form-control" name="email" value="<?= $utilisateurs['email'] ?>" id="exampleInputEmail1">
                                         </div>
-                                       
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">user_name</label>
+                                            <input type="text" class="form-control" name="user_name" value="<?= $utilisateurs['user_name'] ?>" id="exampleInputEmail1">
+                                        </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">password</label>
                                             <input type="text" class="form-control" name="password" value="<?= $utilisateurs['password'] ?>" id="exampleInputEmail1">
@@ -125,4 +129,4 @@ $utilisateurs = mysqli_fetch_assoc(mysqli_query($con, $delete));
         </div>
     </div>
 </div>
-<?php include_once('../shared/footer.php'); ?>
+<?php include_once('../../footer.php'); ?>
