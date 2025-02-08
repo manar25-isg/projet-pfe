@@ -21,7 +21,7 @@
                             Utilisateur
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./profile.php">Mon Profile</a></li>
+                            <li><a class="dropdown-item" href="/events/admin/profile.php">Mon Profile</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li>
                                 <hr class="dropdown-divider">
