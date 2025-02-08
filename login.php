@@ -17,8 +17,8 @@
    <main>
         <form action="">
             <p>
-                <label for="">Nom d'utilisateur: </label>
-                <input type="text" name="username" id="">
+                <label for="">email: </label>
+                <input type="text" name="email" id="">
             </p>
             <p>
                 <label for="">Mot de passe: </label>
