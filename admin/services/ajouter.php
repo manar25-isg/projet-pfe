@@ -34,6 +34,17 @@
                                         $insert = "INSERT INTO `services`(`libelle`, `description`) VALUES (\"" . $libelle . "\",\"" . $description . "\")";
                                         $result = mysqli_query($con, $insert);
                                     }
+                                    function validateLibelle($libelle)
+                                    {
+                                        //var_dump("formulaire recu au serveur");
+                                        // se connecter à la base
+                                        $con = mysqli_connect('localhost', 'root', '', 'db_events');
+                                        // requete  SQL
+                                        $select = "SELECT libelle FROM services WHERE libelle=\"".$libelle."\"";
+    
+                                        return mysqli_query($con, $select);
+
+                                    }
                                     // soumission de formulaire par la methode POST
                                     $errors = [];
                                     if (isset($_POST['valid'])) {
@@ -49,7 +60,9 @@
                                         if (empty($description)) {
                                             $errors[] = "description is required";
                                         }
-                                       
+                                        if (mysqli_num_rows(validateLibelle($libelle))>0) {
+                                            $errors[] = "libelle already exists";
+                                        }
                                         if (count($errors) <= 0) {
                                             saveService($libelle , $description);
                                         }

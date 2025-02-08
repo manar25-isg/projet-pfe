@@ -24,6 +24,17 @@
             </div>
             <div class="card-body">
               <?php 
+              function validateemail($email)
+              {
+                  //var_dump("formulaire recu au serveur");
+                  // se connecter à la base
+                  $con = mysqli_connect('localhost', 'root', '', 'db_events');
+                  // requete  SQL
+                  $select = "SELECT email FROM utilisateurs WHERE email=\"".$email."\"";
+
+                  return mysqli_query($con, $select);
+
+              }
 
                   if(isset($_POST['validate']))
                   {
@@ -50,6 +61,9 @@
                     {
                         $errors[] = "Les deux mot de passes ne sont pas identiques";
                     }
+                    if (mysqli_num_rows(validateemail($email))>0) {
+                      $errors[] = "email already exists";
+                  }
                     if(count($errors) == 0)
                     {
                       $passwordHash = password_hash($password, PASSWORD_ARGON2I);

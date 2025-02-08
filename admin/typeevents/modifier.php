@@ -6,7 +6,7 @@
 <?php
 $id = $_GET['id'];
 $con = mysqli_connect('localhost', 'root', '', 'db_events');
-$delete = "SELECT * FROM services WHERE id = $id";
+$delete = "SELECT * FROM type_evenements WHERE id = $id";
 $service = mysqli_fetch_assoc(mysqli_query($con, $delete)); ?>
 <div class="container">
     <div class="row mt-4">
@@ -22,21 +22,21 @@ $service = mysqli_fetch_assoc(mysqli_query($con, $delete)); ?>
         </div>
         <div class="col-8">
             <div class="card">
-                <div class="card-header text-center bg-primary text-white">Gestion des services</div>
+                <div class="card-header text-center bg-primary text-white">Types d'événement</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div class="card">
-                                <div class="card-header  text-center bg-info text-white">Modifier une service</div>
+                                <div class="card-header  text-center bg-info text-white">Modifier un type d'événement</div>
                                 <div class="card-body">
                                     <?php
-                                    function editService($id, $libelle, $description)
+                                    function editType($id, $libelle, $description)
                                     {
                                         //var_dump("formulaire recu au serveur");
                                         // se connecter à la base
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
                                         // requete  SQL
-                                        $insert = "UPDATE `services` SET `libelle`=\"".$libelle."\",`description`=\"".$description."\" WHERE  `id`=$id;";
+                                        $insert = "UPDATE `type_evenements` SET `libelle`=\"".$libelle."\",`description`=\"".$description."\" WHERE  `id`=$id;";
                                         $result = mysqli_query($con, $insert);
                                     }
                                     function validateLibelle($libelle)
@@ -45,11 +45,11 @@ $service = mysqli_fetch_assoc(mysqli_query($con, $delete)); ?>
                                         // se connecter à la base
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
                                         // requete  SQL
-                                        $select = "SELECT libelle FROM services WHERE libelle=\"".$libelle."\"";
+                                        $select = "SELECT libelle FROM type_evenements WHERE libelle=\"".$libelle."\"";
     
                                         return mysqli_query($con, $select);
-
                                     }
+
                                     // soumission de formulaire par la methode POST
                                     $errors = [];
                                     if (isset($_POST['valid'])) {
@@ -63,13 +63,13 @@ $service = mysqli_fetch_assoc(mysqli_query($con, $delete)); ?>
                                         }
                                         if (empty($description)) {
                                             $errors[] = "description is required";
-                                        
                                         }
-                                        if (mysqli_num_rows(validateLibelle($libelle))>0) {
-                                            $errors[] = "libelle already exists";
-                                        }
+                                  
+                                    if (mysqli_num_rows(validateLibelle($libelle))>0) {
+                                        $errors[] = "libelle already exists";
+                                    }
                                         if (count($errors) <= 0) {
-                                            editService($id, $libelle, $description);
+                                            editType($id, $libelle, $description);
                                         }
                                     }
                                     ?>
