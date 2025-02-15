@@ -1,67 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A&M Events - Bienvenue </title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-
-<body>
-  <div class="container">
-    <header>
-      <img src="" alt="">
-      <h1 class="bg bg-primary text-center text-white">Bienvenue dans notre site !</h1>
-      <?php include_once('header-menu.php') ?>
-    </header>
-    <main>
-      <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="assets/images/1.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="assets/images/2.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-          </div>
+include_once('includes/header.php');
+?>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-primary py-3 d-none d-md-block">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                <?php include_once('includes/menu-user.php'); ?>
+            </div>
+                <?php include_once('includes/reseaux_sociaux.php'); ?>
+            </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <p>AM Events une application va vous permettre d'organiser vos evenements: </p>
-      <p>Nos services: </p>
-      <ul>
-        <li>Access gratuit pour creer un compte</li>
-        <li>Consulter la liste des services de nos partenaires</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum. Eveniet, minus.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum. Eveniet, minus.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum. Eveniet, minus.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum. Eveniet, minus.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum. Eveniet, minus.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ipsum. Eveniet, minus.</li>
-      </ul>
-    </main>
-  </div>
+    </div>
+    <!-- Topbar End -->
 
 
+    <!-- Navbar Start -->
+    <?php include_once('includes/navbar.php'); ?>
+    <!-- Navbar End -->
 
 
+    <!-- Carousel Start -->
+    <?php include_once('includes/carousel.php'); ?>
+    <!-- Carousel End -->
 
 
+    <!-- About Start -->
+    <?php include_once('includes/a-propos.php'); ?>
+    <a href="/events/apropos.php">Types d'événement</a>
+    <!-- About End -->
 
 
+    <!-- Promotion Start -->
+    <?php include_once('includes/promotion.php'); ?>
+    <!-- Promotion End -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-</body>
+    <!-- Video Modal Start -->
+    <?php include_once('includes/video.php'); ?>
+    <!-- Video Modal End -->
 
-</html>
+
+    <!-- Services Start -->
+    <?php include_once('includes/services.php'); ?>
+    <!-- Services End -->
+
+
+    <!-- Portfolio Start -->
+    <?php include_once('includes/portfolio.php'); ?>
+    <!-- Portfolio End -->
+
+
+    <!-- Products Start -->
+    <?php include_once('includes/products.php'); ?>
+    <!-- Products End -->
+
+
+    <!-- Team Start -->
+    <?php include_once('includes/teams.php'); ?>
+    <!-- Team End -->
+
+
+    <!-- Testimonial Start -->
+    <?php include_once('includes/testimonial.php'); ?>
+    <!-- Testimonial End -->
+
+
+    <?php include_once('includes/footer.php'); ?>
