@@ -46,7 +46,7 @@
                                                     ?>
 
                                                 <tr>
-                                                <td><?= $services['image'] ?></td>
+                                                <td><a href="/events/assets/<?= $services['image'] ?>" target="_blank"><img src="/events/assets/<?= $services['image'] ?>"width="50" height="50"/></a></td>
                                                 <td><?= $services['libelle'] ?></td>
                                                 <td><?= $services['description'] ?></td>
                                                 <td>

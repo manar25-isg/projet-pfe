@@ -16,15 +16,16 @@ $pageCourante = explode('/',$actual_link)[2];
                     <div class="navbar-nav ml-auto py-0">
                         <a href="index.php" class="nav-item nav-link <?= $pageCourante == 'index.php' ?  'active': '' ?>">Accueil</a>
                         <a href="apropos.php" class="nav-item nav-link <?= $pageCourante == 'apropos.php' ?  'active': '' ?>">A propos</a>
-                        <a href="product.html" class="nav-item nav-link">Evennements</a>
+                        <a href="evennements.php" class="nav-item nav-link  <?= $pageCourante == 'evennements.php' ?  'active': '' ?>">Evennements</a>
                     </div>
                     <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">AM</span>EVENTS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="gallery.html" class="nav-item nav-link">Galerie</a>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="services.php" class="nav-item nav-link  <?= $pageCourante == 'services.php' ?  'active': '' ?>">Service</a>
+                        <a href="galerie.php" class="nav-item nav-link <?= $pageCourante == 'galerie.php' ?  'active': '' ?>">Galerie</a>
+                        <a href="inscription.php" class="nav-item nav-link <?= $pageCourante == 'inscription.php' ?  'active': '' ?>">Contact</a>
+                        
                     </div>
                 </div>
             </nav>

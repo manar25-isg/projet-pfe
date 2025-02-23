@@ -62,6 +62,7 @@
             }
             if (count($errors) == 0) {
               // connexion a la base
+              
               $con = mysqli_connect('localhost', 'root', '', 'db_events');
               // tester l'existence de l'utilisateur
               $sql = "SELECT * FROM utilisateurs WHERE email = \"" . $email . "\"";
@@ -71,15 +72,19 @@
                 if (!password_verify($password, $userDetails['password'])) {
                   $errors[] = "Les parametres invalides";
                 } else {
+                  ob_start();
                   if ($userDetails['type_utilisateur'] == "role_admin") {
                     $_SESSION['user'] = $userDetails;
-                    header('location: admin/index.php');
+                    header('location: admin/index.php',true, 302);
                   } else {
                     echo "utilisateur unconnu";
                     die;
                   }
+                  ob_end_flush();
                 }
+                
               }
+             
             }
           }
           ?>

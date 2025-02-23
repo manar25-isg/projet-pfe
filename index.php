@@ -23,12 +23,12 @@ include_once('includes/header.php');
 
     <!-- Carousel Start -->
     <?php include_once('includes/carousel.php'); ?>
-    <!-- Carousel End -->
+    <!-- Carousel End -->  
 
 
     <!-- About Start -->
     <?php include_once('includes/a-propos.php'); ?>
-    <a href="/events/apropos.php">Types d'événement</a>
+    <a href="/events/apropos.php"></a>
     <!-- About End -->
 
 

@@ -21,11 +21,11 @@ include_once('includes/header.php');
 <!-- Navbar End -->
 <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">About</h1>
+            <h1 class="text-white display-3 mt-lg-5">A propros</h1>
             <div class="d-inline-flex align-items-center text-white">
                 <p class="m-0"><a class="text-white" href="">Home</a></p>
                 <i class="fa fa-circle px-3"></i>
-                <p class="m-0">About</p>
+                <p class="m-0">A propros</p>
             </div>
         </div>
     </div>

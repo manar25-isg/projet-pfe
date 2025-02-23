@@ -6,10 +6,7 @@
 <!-- navbar de site -->
 <?php include_once('shared/navbar.php'); ?>
 <?php session_start(); 
-    if(!isset($_SESSION['user']))
-    {
-        header('location: ../index.php');
-    }
+   
 
 ?>
 <!-- /navbar de site -->

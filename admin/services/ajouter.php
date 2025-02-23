@@ -25,13 +25,13 @@
                                 <div class="card-header  text-center bg-info text-white">Ajouter un service</div>
                                 <div class="card-body">
                                     <?php
-                                    function saveService($libelle, $description)
+                                    function saveService($libelle, $description, $image)
                                     {
                                         //var_dump("formulaire recu au serveur");
                                         // se connecter à la base
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
                                         // requete  SQL
-                                        $insert = "INSERT INTO `services`(`libelle`, `description`) VALUES (\"" . $libelle . "\",\"" . $description . "\")";
+                                        $insert = "INSERT INTO `services`(`libelle`, `description`,`image`) VALUES (\"" . $libelle . "\",\"" . $description . "\",\"" . $image . "\")";
                                         $result = mysqli_query($con, $insert);
                                     }
                                     function validateLibelle($libelle)
@@ -40,18 +40,31 @@
                                         // se connecter à la base
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
                                         // requete  SQL
-                                        $select = "SELECT libelle FROM services WHERE libelle=\"".$libelle."\"";
-    
-                                        return mysqli_query($con, $select);
+                                        $select = "SELECT libelle FROM services WHERE libelle=\"" . $libelle . "\"";
 
+                                        return mysqli_query($con, $select);
                                     }
+                                   
+                                    
+                                    
                                     // soumission de formulaire par la methode POST
                                     $errors = [];
                                     if (isset($_POST['valid'])) {
                                         // recuperation des données
                                         $libelle = $_POST['libelle'];
                                         $description = $_POST['description'];
-                                        //$image = $_POST['image'];
+                                        $image = $_FILES['fichier'];
+                                      
+                                        $target_dir = "C:\\xampp\\htdocs\\events\\testes\\";
+                                        
+                                    
+                                            $fichier = $_FILES['fichier'];
+                                            $filename = "service-".uniqid().".jpg";
+                                            if (move_uploaded_file($fichier["tmp_name"], $target_dir . $filename)) {
+                                                echo "The file " . htmlspecialchars(basename($_FILES["fichier"]["name"])) . " has been uploaded.";
+                                            }
+                                      
+                                    
                                         // validation des données
                                         // contraintes
                                         if (empty($libelle)) {
@@ -60,25 +73,29 @@
                                         if (empty($description)) {
                                             $errors[] = "description is required";
                                         }
-                                        if (mysqli_num_rows(validateLibelle($libelle))>0) {
+                                        if (($image['size'])<=0)  {
+                                            $errors[] = "image is required";
+                                            
+                                        }
+                                        if (mysqli_num_rows(validateLibelle($libelle)) > 0) {
                                             $errors[] = "libelle already exists";
                                         }
                                         if (count($errors) <= 0) {
-                                            saveService($libelle , $description);
+                                            saveService($libelle, $description, $filename);
                                         }
                                     }
                                     ?>
                                     <?php
-                                        if(count($errors) > 0){
-                                           foreach($errors as $error){
+                                    if (count($errors) > 0) {
+                                        foreach ($errors as $error) {
 
-                                            ?>
-                                            <div class="alert alert-danger"><?= $error ?></div>
-                                            <?php
-                                           }
-                                        }
                                     ?>
-                                    <form action="" method="post">
+                                            <div class="alert alert-danger"><?= $error ?></div>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                    <form action="" method="post" enctype="multipart/form-data">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Libellé</label>
                                             <input type="text" class="form-control" name="libelle" id="exampleInputEmail1">
@@ -88,6 +105,10 @@
                                             <input type="text" class="form-control" name="description" id="exampleInputEmail1">
                                         </div>
                                         
+                                            <label for="fichier">Image</label>
+                                            <input type="file" name="fichier" id="">
+                                          
+                                      
                                         <button type="submit" name="valid" class="btn btn-primary">Valider</button>
                                     </form>
                                 </div>
