@@ -70,7 +70,7 @@
               if (mysqli_num_rows($exec) > 0) {
                 $userDetails = mysqli_fetch_assoc($exec);
                 if (!password_verify($password, $userDetails['password'])) {
-                  $errors[] = "Les parametres invalides";
+                  $errors[] = "email ou mot de passe invalide";
                 } else {
                   ob_start();
                   if ($userDetails['type_utilisateur'] == "role_admin") {
@@ -107,12 +107,12 @@
               <input type="email" class="form-control p-4" name="email" placeholder="Votre Adresse Email" required="required" data-validation-required-message="SVP entrer votre email" />
 
             </div>
-            <div class="control-group">
+            <div class="control-group mt-3">
               <input type="password" class="form-control p-4" name="password" placeholder="Votre mot de passe" required="required" data-validation-required-message="SVP entrer votre mot de passse">
 
             </div>
-            <div>
-              <button class="btn btn-primary btn-block py-3 px-5" type="submit" name="validate">Se Connecter</button>
+            <div class="text-center mt-3" >
+              <button class="btn btn-primary  py-3 px-5" type="submit" name="validate">Se Connecter</button>
             </div>
           </form>
         </div>
