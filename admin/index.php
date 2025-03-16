@@ -41,24 +41,42 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Espace Administrateur</h1>
                                     </div>
-                                    <form class="user">
+                                    <?php
+                    if(isset($_POST['connecter'])){
+                       
+                        // recuperation des valeurs ( email, password )
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+                        $con = mysqli_connect('localhost','root', '', 'db_events');
+                        $sql = "SELECT * FROM utilisateurs WHERE type_utilisateur = 'role_admin' AND email = \"".$email."\"";
+                        $exec = mysqli_query($con, $sql);
+                        if(mysqli_num_rows($exec) > 0){
+                            $user = mysqli_fetch_assoc($exec);
+                            session_start();
+                            $_SESSION['user'] = $user;
+                            header('location: /events/admin/bienvenue.php');
+                        }
+                       
+                    }
+                                    ?>
+                                    <form class="user" method="post">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
-                                        
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+
+                                        <button type="submit" name="connecter" class="btn btn-primary btn-user btn-block">
                                             Se Connecter
                                         </button>
-                                       
-                                        
+
+
                                     </form>
-                                   
+
                                 </div>
                             </div>
                         </div>
