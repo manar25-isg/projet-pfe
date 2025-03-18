@@ -75,7 +75,8 @@
                 </div>
             </li>
 
-            
+           
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -98,7 +99,6 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Type d'evenements</span></a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" href="/events/admin/evenements.php">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -108,7 +108,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/events/admin/reservations.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Résrvation</span></a>
             </li>
@@ -218,66 +218,36 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Gestion des préstataires</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Gestion des evenements</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Liste des préstataires</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Liste des evenements</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Email</th>
-                                            <th>Téléphone</th>
+                                            <th>Titre</th>
+                                            <th>Client</th>
+                                            <th>Type d'evenement</th>
                                             <th>Statut</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th></th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Email</th>
-                                            <th>Téléphone</th>
+                                        <th>Titre</th>
+                                            <th>Client</th>
+                                            <th>Type d'evenement</th>
                                             <th>Statut</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php
-                                        $con = mysqli_connect('localhost', 'root', '', 'db_events');
-                                        $sql = "SELECT * FROM utilisateurs WHERE type_utilisateur = 'role_prestataire'";
-                                        $results = mysqli_query($con, $sql);
-                                        foreach ($results as $client) {
-                                        ?>
-                                            <tr>
-                                                <td>
-                                                    <a href="/events/assets/<?= $client['avatar'] ?>" target="_blank">
-                                                        <img height="50px" width="50px" src="/events/assets/images/<?= $client['avatar'] ?>" />
-                                                    </a>
-                                                </td>
-                                                <td><?= $client['nom'] ?></td>
-                                                <td><?= $client['prenom'] ?></td>
-                                                <td><?= $client['email'] ?></td>
-                                                <td><?= $client['telephone'] ?></td>
-                                                <td><?= $client['statut'] ?></td>
-                                                <td>
-                                                    <a class="btn btn-danger btn-sm" href="bloquer-utilisateur.php?id=<?= $client['id'] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-                                                        </svg>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
+                                     
 
                                     </tbody>
                                 </table>

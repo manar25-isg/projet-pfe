@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="bienvenue.php">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Tableau de board</span></a>
             </li>
@@ -75,7 +75,24 @@
                 </div>
             </li>
 
-            
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Gestion évènements</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+
+                        <a class="collapse-item" href="utilities-color.html">Type évènements</a>
+                        <a class="collapse-item" href="utilities-border.html">Liste d'évènements</a>
+
+                    </div>
+                </div>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -98,7 +115,7 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Type d'evenements</span></a>
             </li>
-
+            
             <li class="nav-item">
                 <a class="nav-link" href="/events/admin/evenements.php">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -218,61 +235,45 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Gestion des préstataires</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Gestion des Types d'evenements</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Liste des préstataires</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Liste des types</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                <a href="ajouter-type.php" class="btn btn-primary m-2">Nouveau Type</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th></th>
                                             <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Email</th>
-                                            <th>Téléphone</th>
-                                            <th>Statut</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th></th>
                                             <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Email</th>
-                                            <th>Téléphone</th>
-                                            <th>Statut</th>
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
                                         $con = mysqli_connect('localhost', 'root', '', 'db_events');
-                                        $sql = "SELECT * FROM utilisateurs WHERE type_utilisateur = 'role_prestataire'";
+                                        $sql = "SELECT * FROM type_evenements";
                                         $results = mysqli_query($con, $sql);
-                                        foreach ($results as $client) {
+                                        foreach ($results as $type) {
                                         ?>
                                             <tr>
+                                                <td><?= $type['libelle'] ?></td>
                                                 <td>
-                                                    <a href="/events/assets/<?= $client['avatar'] ?>" target="_blank">
-                                                        <img height="50px" width="50px" src="/events/assets/images/<?= $client['avatar'] ?>" />
-                                                    </a>
-                                                </td>
-                                                <td><?= $client['nom'] ?></td>
-                                                <td><?= $client['prenom'] ?></td>
-                                                <td><?= $client['email'] ?></td>
-                                                <td><?= $client['telephone'] ?></td>
-                                                <td><?= $client['statut'] ?></td>
-                                                <td>
-                                                    <a class="btn btn-danger btn-sm" href="bloquer-utilisateur.php?id=<?= $client['id'] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                    <a class="btn btn-danger btn-sm" href="supprimer-type.php?id=<?= $type['id'] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                                                             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-                                                        </svg>
-                                                    </a>
+                                                        </svg></a>
+                                                    <a class="btn btn-warning btn-sm" href="modifier-type.php?id=<?= $type['id'] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                                        </svg></a>
                                                 </td>
                                             </tr>
                                         <?php
