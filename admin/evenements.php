@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Admin AM events </title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -247,7 +247,29 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                     
+                                    <?php
+                                            $con = mysqli_connect('localhost', 'root', '', 'db_events');
+                                            $sql = "SELECT * FROM evenements WHERE evenements = 'role_client'";
+                                            $results = mysqli_query($con, $sql);
+                                            foreach ($results as $client) {
+                                            ?>
+                                                <tr>
+                                                    <td><?= $client['first_name'] ?></td>
+                                                    <td><?= $client['last_name'] ?></td>
+                                                    <td><?= $client['email'] ?></td>
+                                                    <td><?= $client['phone'] ?></td>
+                                                    <td></td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                                     </tbody>
                                 </table>

@@ -40,6 +40,14 @@
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row">
+            <?php
+$con=mysqli_connect("localhost","root","","db_events");
+$select="select * from type_evenements ";
+$resultat=mysqli_query($con,$select);
+foreach($resultat as $r){
+
+
+                ?>
                 <div class="col-lg-6">
                     <h3 class="section-title position-relative mb-5">Nous organisons des événements festifs adaptés, allant des soirées thématiques aux célébrations privées</h3>
                 </div>
